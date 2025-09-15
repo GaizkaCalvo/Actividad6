@@ -1,0 +1,19 @@
+<div class="border border-dark p-3 h-100">
+    <figure>
+        <img [src]="oUsersList()?.image" class="user-image img-fluid rounded-circle d-block mx-auto" alt="">
+    </figure>
+    <h5 class="user-name text-black text-center mb-3">{{oUsersList()?.first_name}} {{oUsersList()?.last_name}}</h5>
+
+    <div class="d-flex flex-wrap justify-content-between gap-2">
+        <div class="flex-fill text-center">
+            <app-view-user></app-view-user>
+        </div>
+        <div class="flex-fill text-center">
+            <app-update-user></app-update-user>
+        </div>
+        <div class="flex-fill text-center">
+            <app-delete-user></app-delete-user>
+        </div>
+    </div>
+
+</div>
