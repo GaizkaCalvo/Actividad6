@@ -21,5 +21,9 @@ export class UsersService
             return lastValueFrom(this.httpClient.get<any>(url));
         }
     }
-  
+    
+    getUserById(userId : string) : Promise<any>
+    {
+        return this.getAllUsers(this.baseUrl + "/" + userId);
+    }
 }

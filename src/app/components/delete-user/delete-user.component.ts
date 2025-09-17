@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-delete-user',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './delete-user.component.css'
 })
 export class DeleteUserComponent {
-
+    sUserID     = input<string>();
+    bIconActive = input<boolean>();
 }

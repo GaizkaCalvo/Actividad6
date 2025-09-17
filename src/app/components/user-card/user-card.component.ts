@@ -10,7 +10,6 @@ import { ViewUserComponent } from '../view-user/view-user.component';
     templateUrl: './user-card.component.html',
     styleUrl: './user-card.component.css'
 })
-export class UserCardComponent 
-{
+export class UserCardComponent {
     oUsersList = input<IUser>();
 }

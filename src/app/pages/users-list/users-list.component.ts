@@ -25,8 +25,6 @@ export class UsersListComponent
         {
             const response : IResponse = await this.usersService.getAllUsers();
             this.vUsers = response.results;
-            console.log(response);
-            console.log(this.vUsers);
         }
         catch(error)
         {

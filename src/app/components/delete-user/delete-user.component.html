@@ -1,3 +1,7 @@
-<span class="d-flex flex-column align-items-center fw-bold text-black text-danger">
-  <i class="bi bi-trash me-1 fs-4"></i> Borrar
-</span>
+<button type="button" class="w-100 h-100 btn btn-outline-danger d-flex flex-column align-items-center px-1 py-1">
+    @if (bIconActive() === true)
+    {
+         <i class="bi bi-trash me-1 fs-4"></i>
+    }
+    <span class="fw-bold text-danger">Borrar</span>
+</button>

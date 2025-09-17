@@ -6,13 +6,13 @@
 
     <div class="d-flex flex-wrap justify-content-between gap-2">
         <div class="flex-fill text-center">
-            <app-view-user></app-view-user>
+            <app-view-user [bIconActive]="true" [sUserID]="oUsersList()?._id" class="w-100"></app-view-user>
         </div>
         <div class="flex-fill text-center">
-            <app-update-user></app-update-user>
+            <app-update-user [bIconActive]="true"></app-update-user>
         </div>
         <div class="flex-fill text-center">
-            <app-delete-user></app-delete-user>
+            <app-delete-user [bIconActive]="true"></app-delete-user>
         </div>
     </div>
 

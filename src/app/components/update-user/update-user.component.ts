@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-update-user',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './update-user.component.css'
 })
 export class UpdateUserComponent {
-
+    sUserID = input<string>();
+    bIconActive = input<boolean>();
 }
