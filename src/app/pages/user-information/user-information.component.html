@@ -1,22 +1,24 @@
-<section class="d-flex justify-content-around mt-5">
-    <figure class="align-self-center">
-        <img [src]="userInformation?.image" class="user-image img-fluid rounded-circle d-block mx-auto" alt="">
+<section class="d-flex flex-column flex-md-row justify-content-around align-items-center mt-5">
+    <figure class="text-center">
+        <img [src]="userInformation?.image" 
+        class="rounded-circle img-fluid" alt="">
     </figure>
 
-    <div class="vr mx-4"></div>
+    <div class="vr mx-4 d-none d-md-block"></div>
+    <hr class="border-top border-1 border-secondary w-100 d-block d-md-none">
 
-    <div class="d-flex flex-column justify-content-center gap-3">
+    <div class="d-flex flex-column gap-3">
         <h2>{{userInformation?.first_name}}</h2>
         <h2>{{userInformation?.last_name}}</h2>
-        <p class="text-wrap"><strong>Nombre de Usuario:</strong> {{userInformation?.username}}</p>
-        <p class="text-wrap"><strong>Email:</strong> {{userInformation?.email}}</p>
+        <p class="text-wrap text-break"><strong>Nombre de Usuario:</strong> {{userInformation?.username}}</p>
+        <p class="text-wrap text-break"><strong>Email:</strong> {{userInformation?.email}}</p>
         
         <div class="d-flex flex-wrap justify-content-between gap-2">
             <div class="flex-fill text-center">
-                <app-delete-user></app-delete-user>
+                <app-delete-user [sUserID]="idUser"></app-delete-user>
             </div>
             <div class="flex-fill text-center">
-                <app-update-user></app-update-user>
+                <app-update-user [sUserID]="idUser"></app-update-user>
             </div>
             <div class="flex-fill text-center">
                 <app-back-home></app-back-home>

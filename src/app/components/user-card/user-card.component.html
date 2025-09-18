@@ -9,10 +9,10 @@
             <app-view-user [bIconActive]="true" [sUserID]="oUsersList()?._id" class="w-100"></app-view-user>
         </div>
         <div class="flex-fill text-center">
-            <app-update-user [bIconActive]="true"></app-update-user>
+            <app-update-user [bIconActive]="true" [sUserID]="oUsersList()?._id"></app-update-user>
         </div>
         <div class="flex-fill text-center">
-            <app-delete-user [bIconActive]="true"></app-delete-user>
+            <app-delete-user [bIconActive]="true" [sUserID]="oUsersList()?._id"></app-delete-user>
         </div>
     </div>
 

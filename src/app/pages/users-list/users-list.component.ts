@@ -13,6 +13,7 @@ export class UsersListComponent
 {
     usersService = inject(UsersService);
     vUsers : IUser[] = [];
+    totalPages : number = 0;
 
     ngOnInit()
     {
@@ -25,6 +26,24 @@ export class UsersListComponent
         {
             const response : IResponse = await this.usersService.getAllUsers();
             this.vUsers = response.results;
+            this.totalPages = response.total_pages;
+        }
+        catch(error)
+        {
+            console.log("Error loading users" + error);
+        }
+    }
+    get pageArray(): number[] 
+    {
+        return Array.from({ length: this.totalPages }, (_, i) => i);
+    }
+    async changePage(event : any)
+    {
+        try
+        {
+            const response : IResponse = await this.usersService.getByPage(event.target.value);
+            this.vUsers = response.results;
+            this.totalPages = response.total_pages;
         }
         catch(error)
         {

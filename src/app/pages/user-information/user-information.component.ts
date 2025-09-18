@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, input } from '@angular/core';
 import { UsersService } from '../../services/users.service';
-import { TypeofExpression } from '@angular/compiler';
 import { IUser } from '../../interfaces/i-user.interface';
 import { ActivatedRoute } from '@angular/router';
 import { DeleteUserComponent } from '../../components/delete-user/delete-user.component';
@@ -15,18 +14,12 @@ import { BackHomeComponent } from '../../components/back-home/back-home.componen
 })
 export class UserInformationComponent 
 {
+    @Input() idUser : string = "";
     userService     = inject(UsersService);
-    activatedRoute  = inject(ActivatedRoute);
-    userId : string = "";
     userInformation : IUser | undefined;
 
     ngOnInit()
     {
-        this.activatedRoute.params.subscribe(params =>
-        {
-            this.userId = params["idUser"];
-        })
-
         this.getUserInformation();
     }
 
@@ -34,7 +27,7 @@ export class UserInformationComponent
     {
         try
         {
-            this.userInformation  = await this.userService.getUserById(this.userId);
+            this.userInformation  = await this.userService.getUserById(this.idUser);
         }
         catch(error)
         {

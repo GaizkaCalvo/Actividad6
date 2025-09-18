@@ -1,4 +1,5 @@
-<button type="button" class="w-100 h-100 btn btn-outline-secondary d-flex flex-column align-items-center px-1 py-1">
+<button type="button" class="w-100 h-100 btn btn-outline-secondary d-flex flex-column align-items-center px-1 py-1"
+[routerLink]="['/updateuser', sUserID()]">
     @if (bIconActive() === true)
     {
         <i class="bi bi-pencil-square me-1 fs-4"></i>

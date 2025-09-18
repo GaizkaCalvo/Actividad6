@@ -1,0 +1,57 @@
+<section class="">
+    <form [formGroup]="userReactiveForm" (ngSubmit)="submitForm()" novalidate>
+        <h3>{{formTitle}}</h3>
+
+        <div class="d-flex flex-column">
+            <label for="userName" class="form-text">Nombre Usuario:</label>
+            @if (bFormSubmitted && userReactiveForm.get('userName')?.hasError('required') ||  userReactiveForm.get('userName')?.hasError('pattern')) 
+            {
+                <span class="text-danger form-text fst-italic mt-0"> <small>Campo obligatorio</small></span>
+            }
+            <input class="form-control form-control-sm" type="text" id="userName" formControlName="userName" >
+        </div>
+
+        <div class="d-flex flex-column">
+            <label for="userLastname" class="form-text">Apellido Usuario:</label>
+            @if (bFormSubmitted && userReactiveForm.get('userLastname')?.hasError('required') ||  userReactiveForm.get('userLastname')?.hasError('pattern')) 
+            {
+                <span class="text-danger form-text fst-italic mt-0"> <small>Campo obligatorio</small></span>
+            }
+            <input class="form-control form-control-sm" type="text" id="userLastname" formControlName="userLastname" >
+        </div>
+        
+        <div class="d-flex flex-column">
+            <label for="userEmail" class="form-text">Email Usuario:</label>
+            @if (bFormSubmitted && (userReactiveForm.get('userEmail')?.hasError('required') ||  userReactiveForm.get('userEmail')?.hasError('pattern'))) 
+            {
+                <span class="text-danger form-text fst-italic mt-0"> <small>Campo obligatorio</small></span>
+            }
+            @else if (bFormSubmitted && userReactiveForm.get('userEmail')?.hasError('pattern')) 
+            {
+                <span class="text-danger form-text fst-italic mt-0"> <small>El campo tiene que ser un email</small></span>
+            }
+            <input class="form-control form-control-sm" type="email" id="userEmail" formControlName="userEmail" >
+        </div>
+        
+        <div class="d-flex flex-column">
+            <label for="userImage" class="form-text">Imagen Usuario:</label>
+            @if (bFormSubmitted && userReactiveForm.get('userImage')?.hasError('required') ||  userReactiveForm.get('userImage')?.hasError('pattern')) 
+            {
+                <span class="text-danger form-text fst-italic mt-0"> <small>Campo obligatorio</small></span>
+            }
+            <input class="form-control form-control-sm" type="url" id="userImage" formControlName="userImage" >
+        </div>
+        
+        <div class="d-flex align-items-center mt-3">
+            <button type="submit" class="btn btn-primary"> {{formButton}}</button>
+            @if (bNewUserCreated) 
+            {
+                <span class="form-text fst-italic ms-2 text-info">Nuevo Usuario creado!</span>
+            }
+            @if (bUserUpdated) 
+            {
+                <span class="form-text fst-italic ms-2 text-info">Datos actualizados!</span>
+            }
+        </div>
+    </form>
+</section>

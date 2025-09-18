@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { last, lastValueFrom } from 'rxjs';
+import { IUser } from '../interfaces/i-user.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -21,9 +22,23 @@ export class UsersService
             return lastValueFrom(this.httpClient.get<any>(url));
         }
     }
+    getByPage(page : string) : Promise<any>
+    {
+        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}?page=${page}`));
+    }
     
     getUserById(userId : string) : Promise<any>
     {
         return this.getAllUsers(this.baseUrl + "/" + userId);
     }
+
+    updateUser(updatedUser : IUser) : Promise<any>
+    {
+        return lastValueFrom(this.httpClient.put<IUser>(this.baseUrl + "/" +updatedUser._id, updatedUser));
+    }
+
+     createUser(newUser : IUser) : Promise<any>
+     {
+        return lastValueFrom(this.httpClient.post<IUser>(this.baseUrl, newUser));
+     }
 }
