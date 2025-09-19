@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { IResponse, IUser } from '../../interfaces/i-user.interface';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-users-list',
@@ -12,12 +14,22 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
 export class UsersListComponent
 {
     usersService = inject(UsersService);
+    router = inject(Router);
     vUsers : IUser[] = [];
     totalPages : number = 0;
 
     ngOnInit()
     {
         this.loadUsers();
+        this.usersService.userDeleted.subscribe( (event) =>
+        {
+            //Here we will load again the users calling tye API to refresh the user that as been deleted
+            if(this.router.url != "/home")//In case we deleted in the user-view page instead of home
+            {
+                this.router.navigate(["/home"]);
+            }
+            Swal.fire("Usuario borrado correctamente");
+        })
     }
 
     async loadUsers()
