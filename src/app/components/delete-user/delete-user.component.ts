@@ -21,6 +21,12 @@ export class DeleteUserComponent
         //NULLISH COALESCING OPERATOR --> returns the right argument if the left one is NULL or UDNEFINED
         const userId = this.sUserID() ?? '';
         this.userData =  await this.userService.getUserById(userId);
+        
+        //Response of the API was an error
+        if (this.userData && 'error' in this.userData)
+        {
+            console.log(`Petition of the user info gave an error: ${'error' in this.userData}`);
+        }
     }
 
     deleteButtonCLicked()
@@ -48,6 +54,11 @@ export class DeleteUserComponent
         try
         {
             await this.userService.deleteUser(userId);
+            //Response of the API was an error
+            if (this.userData && 'error' in this.userData)
+            {
+                console.log(`Petition of the user dele gave an error: ${'error' in this.userData}`);
+            }
         }
         catch(error)
         {

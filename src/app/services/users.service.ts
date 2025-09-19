@@ -50,9 +50,14 @@ export class UsersService
         try
         {
             const response = await lastValueFrom(this.httpClient.delete<IUser>(this.baseUrl + "/" + userId));
+            //Response of the API was an error
+            if (response && 'error' in response)
+            {
+                console.log(`Petition of the users delete gave error: ${'error' in response}`);
+                return response; //We dont emmit as we didnt delete the user
+            }
 
             this.userDeleted.emit();
-            console.log("The user was deleted and emited")
             return response;
         }
         catch(error)

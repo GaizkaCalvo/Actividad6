@@ -37,6 +37,12 @@ export class UsersListComponent
         try
         {
             const response : IResponse = await this.usersService.getAllUsers();
+            //Response of the API was an error
+            if (response && 'error' in response)
+            {
+                console.log(`Petition of the users data gave error: ${'error' in response}`);
+                return;
+            }
             this.vUsers = response.results;
             this.totalPages = response.total_pages;
         }
@@ -54,6 +60,12 @@ export class UsersListComponent
         try
         {
             const response : IResponse = await this.usersService.getByPage(event.target.value);
+            //Response of the API was an error
+            if (response && 'error' in response)
+            {
+                console.log(`Petition of the next page gave error: ${'error' in response}`);
+                return;
+            }
             this.vUsers = response.results;
             this.totalPages = response.total_pages;
         }

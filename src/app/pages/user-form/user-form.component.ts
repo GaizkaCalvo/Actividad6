@@ -2,6 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import { IUser } from '../../interfaces/i-user.interface';
 import { UsersService } from '../../services/users.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -13,6 +14,7 @@ export class UserFormComponent
 {
     @Input() idUser : string = "";
     userService     = inject(UsersService);
+    router          = inject(Router);
     userInformation : IUser | undefined;
 
     userReactiveForm : FormGroup;
@@ -50,6 +52,13 @@ export class UserFormComponent
         try
         {
             this.userInformation  = await this.userService.getUserById(this.idUser);
+            //Response of the API was an error
+            if (this.userInformation && 'error' in this.userInformation)
+            {
+                console.log(`Petition of the user info gave error: ${'error' in this.userInformation}`);
+                this.router.navigate(["/home"]);
+            }
+            
         }
         catch(error)
         {
@@ -91,7 +100,13 @@ export class UserFormComponent
                 
             try
             {
-                await this.userService.createUser(this.userInformation);
+                let response =  await this.userService.createUser(this.userInformation);
+                //Response of the API was an error
+                if (response && 'error' in response)
+                {
+                    console.log(`Petition of the user creation gave an error: ${'error' in response}`);
+                    return;
+                }
 
                 this.bNewUserCreated = true;
                 this.userReactiveForm.reset();
@@ -112,7 +127,13 @@ export class UserFormComponent
 
             try
             {
-                await this.userService.updateUser(this.userInformation);
+                const response = await this.userService.updateUser(this.userInformation);
+                //Response of the API was an error
+                if (response && 'error' in response)
+                {
+                    console.log(`Petition of the user update gave error: ${'error' in response}`);
+                    return;
+                }
 
                 this.bUserUpdated = true;
             }
